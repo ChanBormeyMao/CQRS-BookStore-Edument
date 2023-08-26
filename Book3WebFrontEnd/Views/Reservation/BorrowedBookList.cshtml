@@ -1,0 +1,37 @@
+﻿@model List<Book3ReadModels.ReservationReadModel.Reservation>
+@{
+    ViewBag.Title = "Return a Book";
+}
+
+<h2>Return a book</h2>
+
+<fieldset>
+
+    <table>
+        <thead>
+            <tr>
+                <td>Book ID</td>
+                <td>User ID</td>
+                <td>Book Title</td>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var w in Model)
+            {
+                <tr>
+                    <td>@w.Id/td>
+                    <td>@w.User.UserName</td>
+                    <td>@w.Book.BookTitle</td>
+
+                    <td>
+                        <button type="button" class="btn btn-info">
+                            @Html.ActionLink("Return", "Return", new { Id = w.Id })
+                        </button>
+
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</fieldset>

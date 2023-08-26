@@ -1,0 +1,41 @@
+﻿@model List<Book3ReadModels.UserReadModel.User>
+@{
+    ViewBag.Title = "View all users";
+}
+
+<h2>View all books</h2>
+
+<fieldset>
+    <button class="btn btn-info">
+        @Html.ActionLink("Create New Users", "Create")
+    </button>
+    <table>
+        <thead>
+            <tr>
+                <td>User ID</td>
+                <td>User Name</td>
+                <td>User Email</td>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var w in Model)
+            {
+                <tr>
+                    <td>@w.Id/td>
+                    <td>@w.UserName</td>
+                    <td>@w.UserEmail</td>
+                    <td>
+                        <button type="button" class="btn btn-primary">
+                            @Html.ActionLink("Edit", "Update", new { Id = w.Id })
+                        </button>
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-danger">
+                            @Html.ActionLink("Delete", "Delete", new { Id = w.Id, UserName = w.UserName, UserEmail = w.UserEmail })
+                        </button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</fieldset>

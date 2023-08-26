@@ -1,0 +1,16 @@
+﻿@model BookNormalCQRS.AddNewBook
+
+@{
+    ViewBag.Title = "Add New Book";
+}
+
+<h2>Add New Book</h2>
+
+@using (Html.BeginForm())
+{
+    <fieldset>
+        <label>Book Title</label>
+        @Html.TextBoxFor(m => m.BookTitle)
+        <button type="submit" class="btn">Submit</button>
+    </fieldset>
+}

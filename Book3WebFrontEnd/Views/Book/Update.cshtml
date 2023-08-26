@@ -1,0 +1,22 @@
+﻿@model BookNormalCQRS.UpdateBook
+
+@{
+    ViewBag.Title = "Update a Book";
+}
+
+<h2>Update Book</h2>
+
+@using (Html.BeginForm())
+{
+    <fieldset>
+        <div>
+            <label>Book Title</label>
+            @Html.TextBoxFor(u => u.UpdatedBookTitle)
+        </div>
+        <div>
+            @Html.HiddenFor(u => u.Id)
+        </div>
+
+        <button type="submit" class="btn">Submit</button>
+    </fieldset>
+}

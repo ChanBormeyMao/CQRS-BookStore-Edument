@@ -1,0 +1,72 @@
+﻿@model List<Book3ReadModels.BookReadModel.Book>
+@{
+    ViewBag.Title = "View all books";
+}
+
+<h2>View all books</h2>
+
+<fieldset>
+    <button>
+        @Html.ActionLink("Create New Book", "Create")
+    </button>
+    <table>
+        <thead>
+            <tr>
+                <td>Book ID</td>
+                <td>Book Title</td>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var w in Model)
+            {
+                <tr>
+                    <td>@w.Id</td>
+                    <td>@w.BookTitle</td>
+                    <td>
+                        <button type="button" class="btn btn-primary">
+                            @Html.ActionLink("Edit", "Update", new { Id = w.Id })
+                        </button>
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-danger">
+                            @Html.ActionLink("Delete", "Delete", new { Id = w.Id })
+                        </button>
+                    </td>
+
+                    <td>
+                        <select>
+                            @foreach (var war in Domain.UserList.GetAllUsers())
+                            {
+                                <option value="@war.UserName">@war.UserName</option>
+
+                                ViewBag.UserId = war.Id;
+                            }
+                        </select>
+                        @if (w.IsReserved == true)
+                        {
+                            <a class="text-secondary text-dark" style="text-decoration: none;">
+                                Unavailable
+                            </a>
+                            <button type="button" class="btn btn-warning">
+                                @Html.ActionLink(linkText: "Add to WaitList", actionName: "AddWaitList", controllerName: "WaitList", routeValues: new { BookId = w.Id, UserId = ViewBag.UserId }, htmlAttributes: null)
+                            </button>
+                        }
+                        @*Else: Allow Reserve*@
+                        else
+                        {
+                            <button type="button" class="btn btn-info">
+                                @*@Html.ActionLink("Borrow", "Borrow", "Reservation", new { Id = w.Id })*@
+                                @Html.ActionLink(linkText: "Borrow", actionName: "Borrow", controllerName: "Reservation", routeValues: new { BookId = w.Id, UserId = ViewBag.UserId }, htmlAttributes: null)
+                            </button>
+                        }
+                    </td>
+                    @*<td>
+
+                        </td>*@
+
+                </tr>
+            }
+        </tbody>
+    </table>
+</fieldset>
